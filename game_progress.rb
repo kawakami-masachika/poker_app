@@ -34,62 +34,8 @@ class GameProgress
     NOTICE
 
     player_list.each do |player|
+      # 手札交換
       card_exchange(player, trump)
-      # change_flg = false
-      # # 手札入れ替え回数を格納
-      # input_count = 0
-      # # 交換した手札を一時格納
-      # tmp_card_list = []
-
-      # puts "【#{player.name}さん】のターンです"
-
-      # while change_flg == false do
-      #   # 手札を表示
-      #   puts ""
-      #   puts "手札"
-      #   player.hand.show_my_hand
-
-      #   print "入れ替えるカードを選択してください："
-      #   # 入力受付
-      #   input = gets.to_i
-      #   case input
-      #   when NO_EXCHANGE
-      #     change_flg = true
-      #   when ALL_CHANGE
-      #     player.hand.card_list = player.hand.all_change(trump.deck)
-      #     change_flg = true
-      #   when 1..player.hand.card_list.size
-      #     # 
-      #     tmp_card_list << player.hand.exchange(player.hand.card_list, trump.deck, input)
-      #     input_count +=1
-
-      #     if input_count == 5
-      #       change_flg = true
-      #     end
-
-      #   else
-      #     puts <<~WRAING
-
-      #       ************************************
-      #       入力された値は無効です。
-      #       以下の選択肢の中から入力して下さい。
-      #       「手札のインデックス」: 選択したカードを交換
-      #       「0」: 全て交換する
-      #       「99」: 交換しない・交換を終了する
-      #       ************************************
-
-      #     WRAING
-      #   end
-      # end
-      # player.hand.card_list.concat(tmp_card_list) unless tmp_card_list.empty?
-      # puts <<~EXCHANGE
-      # 手札入れ替えを終了します
-      # ***********************************
-      # #{player.name}さん：交換後の手札
-      # #{player.hand.show_my_hand}
-      # ***********************************
-
-      # EXCHANGE
     end
 
     # 役の判定
@@ -142,13 +88,16 @@ class GameProgress
         print "入れ替えるカードを選択してください："
         # 入力受付
         input = gets.to_i
+
         case input
         when NO_EXCHANGE
           change_flg = true
         when ALL_CHANGE
           player.hand.card_list = player.hand.all_change(trump.deck)
           change_flg = true
+        # 交換していない手札の数
         when 1..player.hand.card_list.size
+
           # 交換した手札を一時格納
           tmp_card_list << player.hand.exchange(player.hand.card_list, trump.deck, input)
           input_count +=1
@@ -157,21 +106,12 @@ class GameProgress
           if input_count == 5
             change_flg = true
           end
-
         else
-          puts <<~WRAING
-
-            ************************************
-            入力された値は無効です。
-            以下の選択肢の中から入力して下さい。
-            「手札のインデックス」: 選択したカードを交換
-            「0」: 全て交換する
-            「99」: 交換しない・交換を終了する
-            ************************************
-
-          WRAING
+          # 異常入力がされた場合、警告メッセージを表示
+          disp_waring_msg
         end
       end
+
       player.hand.card_list.concat(tmp_card_list) unless tmp_card_list.empty?
       puts <<~EXCHANGE
       手札入れ替えを終了します
@@ -181,6 +121,20 @@ class GameProgress
       ***********************************
 
       EXCHANGE
+  end
+
+  def disp_waring_msg
+    puts <<~WRAING
+
+      ************************************
+      入力された値は無効です。
+      以下の選択肢の中から入力して下さい。
+      「手札のインデックス」: 選択したカードを交換
+      「0」: 全て交換する
+      「99」: 交換しない・交換を終了する
+      ************************************
+
+    WRAING
   end
 
   # 各プレイヤーの役のチェック
