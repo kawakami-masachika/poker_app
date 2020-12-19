@@ -59,7 +59,11 @@
 # 使い方
 1. クローンを行います
 
-2. `poker`ディレクトリに移動します
+```
+git clone https://github.com/kawakami-masachika/poker_app
+```
+
+1. `poker`ディレクトリに移動します
 
 ```
 cd poker
