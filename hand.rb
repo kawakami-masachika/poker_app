@@ -23,11 +23,11 @@ class Hand
   end
 
   # 手札を全て交換する
-  def all_change(trump)
+  def all_change(deck)
     size = @card_list.size
 
     card_list.clear
 
-    @card_list = trump.shift(size)
+    @card_list = deck.shift(size)
   end
 end
