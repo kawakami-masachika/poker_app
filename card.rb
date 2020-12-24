@@ -15,8 +15,8 @@ class Card
     @deck = DECK
   end
 
+  # 山札をシャッフルする
   def shuffle_deck
-    # 山札をシャッフルする
     @deck.shuffle!
   end
 end

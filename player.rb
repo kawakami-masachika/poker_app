@@ -9,6 +9,7 @@ class Player
     @score = 0
   end
 
+  # 各プレイヤーに手札を配る
   def create_hand(card_list)
     @hand = Hand.new(card_list: card_list)
   end

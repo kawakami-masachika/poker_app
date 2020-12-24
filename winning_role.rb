@@ -66,7 +66,6 @@ class WinningRole
     private
     # ロイヤルフラッシュ
     def royal_flush?(card_list)
-      # スートが全て同じか判定
       if same_suit?(card_list)
         cards = card_list.map{|card| card.values}.flatten
         cards.sort ==  ROYAL_FLUSH_ARY ? true : false
@@ -85,7 +84,6 @@ class WinningRole
 
     # フルハウス 
     def full_house?(card_list)
-      # 数字の配列を作成
       list = card_list.map{|card| card.values}.flatten
       three_pair_flg = false
       two_pair_flg = false
@@ -118,7 +116,6 @@ class WinningRole
 
     # ツーペア
     def two_pair?(card_list)
-      # 数字の配列を作成
       list = card_list.map{|card| card.values}.flatten
       pairs = []
       list.group_by(&:itself).values.each do |pair_ary|
@@ -133,7 +130,6 @@ class WinningRole
     end
 
     def inculde_pair?(card_list, pairs)
-      # 数字の配列を作成
       list = card_list.map{|card| card.values}.flatten
 
       list.group_by(&:itself).values.each do |pair_ary|
@@ -149,6 +145,7 @@ class WinningRole
       suits = card_list.map{|card|card.keys}.flatten
       true if suits.uniq.one?
     end
+
     # 連続した数字の判定
     def consecutive_number?(card_list)
       list = card_list.map{|card| card.values}.flatten
