@@ -6,6 +6,7 @@ require './winning_role'
 class GameProgress
     ALL_CHANGE = 10
     NO_EXCHANGE = 99
+    MAX_HAND = 5
 
   def start
     puts "ポーカーを始めます"
@@ -27,9 +28,9 @@ class GameProgress
 
       ********************* 入力のルール *********************
       入れ替えるカードを選択してください
-      最大5枚まで入れ替え可能です。
-      全て入れ替える場合は「10」と入力して下さい。
-      終了または、交換しない場合は「99」を入力してください。
+      最大#{MAX_HAND}枚まで入れ替え可能です。
+      全て入れ替える場合は「#{ALL_CHANGE}」と入力して下さい。
+      終了または、交換しない場合は「#{NO_EXCHANGE}」を入力してください。
       ********************************************************
     NOTICE
 
@@ -63,7 +64,7 @@ class GameProgress
   # 各プレイヤーにカードを配る
   def distribute_hand(player_list, deck)
     player_list.each do |player|
-      player.create_hand(deck.shift(5))
+      player.create_hand(deck.shift(MAX_HAND))
     end
   end
   def show_exchnge_rule()
@@ -103,7 +104,7 @@ class GameProgress
           input_count +=1
 
           # 5回交換したら、フラグを立てる
-          if input_count == 5
+          if input_count == MAX_HAND
             change_flg = true
           end
         else
@@ -130,8 +131,8 @@ class GameProgress
       入力された値は無効です。
       以下の選択肢の中から入力して下さい。
       「手札のインデックス」: 選択したカードを交換
-      「0」: 全て交換する
-      「99」: 交換しない・交換を終了する
+      「#{ALL_CHANGE}」: 全て交換する
+      「#{NO_EXCHANGE}」: 交換しない・交換を終了する
       ************************************
 
     WRAING
