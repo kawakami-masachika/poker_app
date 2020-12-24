@@ -10,7 +10,7 @@ class Deck
           {D:1}, {D:2}, {D:3}, {D:4}, {D:5}, {D:6}, {D:7}, {D:8}, {D:9}, {D:10}, {D:11}, {D:12}, {D:13},
           {H:1}, {H:2}, {H:3}, {H:4}, {H:5}, {H:6}, {H:7}, {H:8}, {H:9}, {H:10}, {H:11}, {H:12}, {H:13}
           ]
-  attr_accessor :deck
+
   def initialize
     @deck = DECK
   end
