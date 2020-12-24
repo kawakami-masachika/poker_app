@@ -26,7 +26,7 @@ class Hand
   def all_change(deck)
     size = @card_list.size
 
-    card_list.clear
+    @card_list.clear
 
     @card_list = deck.shift(size)
   end
