@@ -1,7 +1,7 @@
 # ゲームの進行役クラス
 
 require './player'
-require './card'
+require './deck'
 require './winning_role'
 class GameProgress
     ALL_CHANGE = 10
@@ -16,7 +16,7 @@ class GameProgress
     player_list << Player.new(name: "B")
     player_list << Player.new(name: "C")
     # 山札の生成
-    trump = Card.new
+    trump = Deck.new
     # 山札をシャッフルする
     trump.shuffle_deck
 
